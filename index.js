@@ -1,6 +1,8 @@
 let jokeItem = document.querySelector(".jokeItem");
 let touchCordinateStart;
 let touchCordinateMove;
+let touchCordinateEnd;
+
 let deleteButtonContainer = (window.screen.width * 40) / 100;
 
 jokeItem.addEventListener("touchstart", (e) => {
@@ -19,5 +21,16 @@ jokeItem.addEventListener("touchmove", (e) => {
 
   }
 
+});
+
+jokeItem.addEventListener("touchend", (e) => {
+touchCordinateEnd = Math.floor(e.changedTouches[0].clientX);
+
+if ( touchCordinateEnd < touchCordinateStart - deleteButtonContainer / 2){
+jokeItem.style.transform = `translateX(-${deleteButtonContainer}px)`;
+}else{
+    jokeItem.style.transform = `translateX(${e.target.offsetLeft})`;
+}
+    
 });
 
