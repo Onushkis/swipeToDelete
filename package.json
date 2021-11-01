@@ -1,0 +1,24 @@
+{
+  "name": "golp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Onushkis/swipeToDelete.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Onushkis/swipeToDelete/issues"
+  },
+  "homepage": "https://github.com/Onushkis/swipeToDelete#readme",
+  "devDependencies": {
+    "gulp-install": "^1.1.0",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.43.4"
+  }
+}
