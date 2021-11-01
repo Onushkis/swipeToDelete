@@ -30,8 +30,10 @@ grid-row-end:2;
 }
 
 .deleteItem{
-   
+   justify-content: center;
     background-color: rgb(188, 143, 143);
+    color: floralwhite;
+    text-align: center;
     grid-column-start: 2;
     grid-column-end:3 ;
     grid-row-start: 1;
