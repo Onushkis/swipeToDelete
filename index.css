@@ -1,0 +1,26 @@
+
+body{
+    margin: 0;
+}
+
+main{
+display: grid;
+grid-template-columns: 1fr 1.25fr;
+grid-auto-rows: 75px;
+}
+
+.jokeItem{
+    background-color: darkseagreen;
+grid-column-start: 1;
+grid-column-end:3 ;
+grid-row-start: 1;
+grid-row-end:2;
+}
+
+.deleteItem{
+    background-color: rgb(188, 143, 143);
+    grid-column-start: 2;
+    grid-column-end:3 ;
+    grid-row-start: 1;
+grid-row-end:2;
+}
