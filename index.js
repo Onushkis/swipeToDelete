@@ -2,8 +2,12 @@ let jokeItem = document.querySelector(".jokeItem");
 let touchCordinateStart;
 let touchCordinateMove;
 let touchCordinateEnd;
-
 let deleteButtonContainer = (window.screen.width * 40) / 100;
+
+//delete all
+document.querySelector(".deleteItem").addEventListener("click", () => {
+    document.querySelector("main").remove();
+})
 
 jokeItem.addEventListener("touchstart", (e) => {
  touchCordinateStart = e.touches[0].clientX;
@@ -33,4 +37,7 @@ jokeItem.style.transform = `translateX(-${deleteButtonContainer}px)`;
 }
     
 });
+
+
+//deleted
 
