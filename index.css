@@ -6,7 +6,7 @@ body{
 main{
     
 display: grid;
-grid-template-columns: 1fr 1.25fr;
+grid-template-columns: 1fr 40%;
 grid-auto-rows: 75px;
 /* place-items: center start;  */
 
