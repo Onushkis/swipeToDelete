@@ -1,14 +1,19 @@
 let jokeItem = document.querySelector(".jokeItem");
-let touchCordinate;
+let touchCordinateStart;
 let touchCordinateMove;
 
 jokeItem.addEventListener("touchstart", (e) => {
- touchCordinate = e.touches[0].clientY;
+ touchCordinateStart = e.touches[0].clientX;
 });
 
 jokeItem.addEventListener("touchmove", (e) => {
     touchCordinateMove = Math.floor(e.touches[0].clientX);
-jokeItem.style.transform = `translateX(${touchCordinateMove}px)`;
+  
+  
+    if(touchCordinateMove < touchCordinateStart){
+    jokeItem.style.transform = `translateX(${touchCordinateMove - touchCordinateStart}px)`;
+
+  }
 
 });
 
