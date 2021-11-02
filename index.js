@@ -6,9 +6,14 @@ let deleteButtonContainer = (window.screen.width * 40) / 100;
 
 //delete all
 document.querySelector(".deleteItem").addEventListener("click", () => {
-jokeItem.classList.add(" animate__fadeOutLeft")
-    // document.querySelector("main").remove();
+    document.querySelector("main").classList.add("animate__fadeOutLeft");
+
+    //timeOut
+setTimeout(() => {
+    document.querySelector("main").remove();
 })
+}, 800);
+     
 
 jokeItem.addEventListener("touchstart", (e) => {
  touchCordinateStart = e.touches[0].clientX;
