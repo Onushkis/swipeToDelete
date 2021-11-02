@@ -9,34 +9,33 @@ display: grid;
 grid-template-columns: 1fr 40%;
 grid-auto-rows: 75px;
 transition: height 0.45s ease;
+border-bottom: solid 1px grey;
 /* place-items: center start;  */
-
 }
-
 .collapsed{
     height: 0;
 }
 
- /* for kids */
+/* for kids */
  .jokeWrapper .DeletAnimation> *{
     display: flex;
     align-items: center;
+    
 }
-
+.jokeWrapper{
+    border-bottom: solid 1px grey;
+}
 .jokeItem{
-    margin: 0;
-    height: 100%;
-   
-    background-color: darkseagreen;
+margin: 0;
+height: 100%;
+background-color: darkseagreen;
 grid-column-start: 1;
 grid-column-end:3 ;
 grid-row-start: 1;
 grid-row-end:2;
 transition: transform 0.15s ease;
-
-
+ border-bottom: solid 1px grey; 
 }
-
 .deleteItem{
     margin: 0;
     height: 100%;
