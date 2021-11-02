@@ -3,23 +3,30 @@ body{
     margin: 0;
 }
 
-main{
-    
+ .DeletAnimation{
+   height: 75px;
 display: grid;
 grid-template-columns: 1fr 40%;
 grid-auto-rows: 75px;
+transition: height 0.45s ease;
 /* place-items: center start;  */
 
 }
 
+.collapsed{
+    height: 0;
+}
+
  /* for kids */
- main > *{
+ .jokeWrapper .DeletAnimation> *{
     display: flex;
     align-items: center;
 }
 
 .jokeItem{
-    padding: 10px;
+    margin: 0;
+    height: 100%;
+   
     background-color: darkseagreen;
 grid-column-start: 1;
 grid-column-end:3 ;
@@ -31,6 +38,8 @@ transition: transform 0.15s ease;
 }
 
 .deleteItem{
+    margin: 0;
+    height: 100%;
    justify-content: center;
     background-color: rgb(188, 143, 143);
     color: floralwhite;
@@ -40,4 +49,13 @@ transition: transform 0.15s ease;
     grid-row-start: 1;
     grid-row-end:2;
 
+}
+
+.onaBox{
+    background-color: purple;
+    height: 100px;
+}
+
+.onaBox p{
+    margin: 0;
 }

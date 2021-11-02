@@ -6,14 +6,20 @@ let deleteButtonContainer = (window.screen.width * 40) / 100;
 
 //delete all
 document.querySelector(".deleteItem").addEventListener("click", () => {
-    document.querySelector("main").classList.add("animate__fadeOutLeft");
+    document.querySelector(".DeletAnimation").classList.add("animate__fadeOutLeft");
 
     //timeOut
+
+    setTimeout(() => {
+        document.querySelector(".DeletAnimation").classList.add("collapsed");
+   
+    },800);
+
 setTimeout(() => {
-    document.querySelector("main").remove();
-})
-}, 800);
-     
+    document.querySelector(".DeletAnimation").remove();
+
+},900);
+});  
 
 jokeItem.addEventListener("touchstart", (e) => {
  touchCordinateStart = e.touches[0].clientX;
