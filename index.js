@@ -4,6 +4,10 @@ let touchCordinateMove;
 let touchCordinateEnd;
 let deleteButtonContainer = (window.screen.width * 40) / 100;
 
+let touchElement;
+touchElement = e.target.parentElrmrnt;
+
+
 //delete all
 document.querySelector(".deleteItem").addEventListener("click", () => {
     document.querySelector(".DeletAnimation").classList.add("animate__fadeOutLeft");
