@@ -7,7 +7,7 @@ axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
 
     const section = document.createElement("section");
     section.classList.add("animate__animated", "DeletAnimation");
-    section.setAttribute('id', user.id); // id definere til slet
+    section.setAttribute("id", user.id); // id definere til slet
 
     const deleteItem = document.createElement("div");
     deleteItem.classList.add("deleteItem");
@@ -18,16 +18,13 @@ axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
     const SwipeItem = document.createElement("article");
     SwipeItem.classList.add("SwipeItem");
 
-
     deleteItem.appendChild(deleteIcon);
     section.appendChild(deleteItem);
-   section.appendChild(SwipeItem);
+    section.appendChild(SwipeItem);
     jokeWrapper.appendChild(section);
     SwipeItem.appendChild(joke);
-
   });
 });
-
 
 // -------------------------------------All from Index.JS
 
@@ -36,13 +33,20 @@ let touchCoordinateStart;
 let touchCoordinateMove;
 let touchCoordinateEnd;
 let deleteButtonContainer = (window.screen.width * 40) / 100;
+let trash = []; // Til local storage
 
+console.log(trash);
 
+// let foo = e 
+
+//-------------------------------- Touch Start
 document.querySelector(".jokeWrapper").addEventListener("touchstart", (e) => {
   let touchElement;
   touchElement = e.target;
   parentElement = e.target.parentElement;
   touchCoordinateStart = Math.floor(e.touches[0].clientX);
+
+  //-------------------------------- Touch Move
 
   document.querySelector(".jokeWrapper").addEventListener("touchmove", (e) => {
     touchCoordinateMove = Math.floor(e.touches[0].clientX);
@@ -57,45 +61,44 @@ document.querySelector(".jokeWrapper").addEventListener("touchstart", (e) => {
     }
   });
 
-   touchElement.addEventListener("touchend", (e) => {
-    touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
+  //-------------------------------- Touch End
 
+  touchElement.addEventListener("touchend", (e) => {
+    touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
+document.querySelector(".jokeWrapper")
     if (touchCoordinateEnd < touchCoordinateStart - deleteButtonContainer / 2) {
       touchElement.style.transform = `translateX(-${deleteButtonContainer}px)`;
+      
     } else {
       touchElement.style.transform = `translateX(${e.target.offsetLeft})`;
     }
   });
-   
-   //-----Deleted
+
+  //-------------------------------------DeletedItem
+
   parentElement.querySelector(".deleteItem").addEventListener("click", () => {
+    //  trash.push(userObject);
+    // console.log(trash);
 
     let userid = parentElement.id; // --------- Helps to save id
     let userName = parentElement.querySelector(".SwipeItem").textContent;
 
     let userObject = {
-      id:parentElement.id,
-      name:parentElement.querySelector(".SwipeItem").textContent,
-
+      id: parentElement.id,
+      name: parentElement.querySelector(".SwipeItem").textContent,
     };
-    localStorage.setItem(`${userObject.id}`, JSON.stringify(userObject)); // 
+    localStorage.setItem(`${userObject.id}`, JSON.stringify(trash)); //
 
+    //-------------------------------- Time Out
     if (touchElement != deleteButtonContainer) {
       parentElement.classList.add("animate__fadeOutLeft");
       setTimeout(() => {
         parentElement.classList.add("collapsed");
       }, 800);
-      
+
       setTimeout(() => {
         parentElement.remove();
       }, 900);
     }
-
   });
 });
-
-
-
- 
-
-
