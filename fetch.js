@@ -3,22 +3,99 @@ axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
 
   users.forEach((user) => {
     const jokeWrapper = document.querySelector(".jokeWrapper");
+    let joke = document.createTextNode(user.name);
 
     const section = document.createElement("section");
     section.classList.add("animate__animated", "DeletAnimation");
-    section.setAttribute('id', user.id);
+    section.setAttribute('id', user.id); // id definere til slet
 
     const deleteItem = document.createElement("div");
     deleteItem.classList.add("deleteItem");
 
-    const jokeItem = document.createElement("article");
-    jokeItem.classList.add("jokeItem");
-    jokeItem.textContent = user.name;
+    const deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fas", "fa-trash", "fa-2x");
 
+    const SwipeItem = document.createElement("article");
+    SwipeItem.classList.add("SwipeItem");
+
+
+    deleteItem.appendChild(deleteIcon);
     section.appendChild(deleteItem);
-    section.appendChild(jokeItem);
+   section.appendChild(SwipeItem);
     jokeWrapper.appendChild(section);
+    SwipeItem.appendChild(joke);
 
-    jokeItem.textContent = user.name;
   });
 });
+
+
+// -------------------------------------All from Index.JS
+
+let SwipeItem = document.querySelector(".SwipeItem");
+let touchCoordinateStart;
+let touchCoordinateMove;
+let touchCoordinateEnd;
+let deleteButtonContainer = (window.screen.width * 40) / 100;
+
+
+document.querySelector(".jokeWrapper").addEventListener("touchstart", (e) => {
+  let touchElement;
+  touchElement = e.target;
+  parentElement = e.target.parentElement;
+  touchCoordinateStart = Math.floor(e.touches[0].clientX);
+
+  document.querySelector(".jokeWrapper").addEventListener("touchmove", (e) => {
+    touchCoordinateMove = Math.floor(e.touches[0].clientX);
+
+    if (
+      touchCoordinateMove < touchCoordinateStart &&
+      touchCoordinateMove > touchCoordinateStart - deleteButtonContainer
+    ) {
+      touchElement.style.transform = `translateX(${
+        touchCoordinateMove - touchCoordinateStart
+      }px)`;
+    }
+  });
+
+   touchElement.addEventListener("touchend", (e) => {
+    touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
+
+    if (touchCoordinateEnd < touchCoordinateStart - deleteButtonContainer / 2) {
+      touchElement.style.transform = `translateX(-${deleteButtonContainer}px)`;
+    } else {
+      touchElement.style.transform = `translateX(${e.target.offsetLeft})`;
+    }
+  });
+   
+   //-----Deleted
+  parentElement.querySelector(".deleteItem").addEventListener("click", () => {
+
+    let userid = parentElement.id; // --------- Helps to save id
+    let userName = parentElement.querySelector(".SwipeItem").textContent;
+
+    let userObject = {
+      id:parentElement.id,
+      name:parentElement.querySelector(".SwipeItem").textContent,
+
+    };
+    localStorage.setItem(`${userObject.id}`, JSON.stringify(userObject)); // 
+
+    if (touchElement != deleteButtonContainer) {
+      parentElement.classList.add("animate__fadeOutLeft");
+      setTimeout(() => {
+        parentElement.classList.add("collapsed");
+      }, 800);
+      
+      setTimeout(() => {
+        parentElement.remove();
+      }, 900);
+    }
+
+  });
+});
+
+
+
+ 
+
+

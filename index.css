@@ -1,8 +1,23 @@
 
 body{
     margin: 0;
+    background-color: hotpink;
 }
+ nav{
+    box-sizing: border-box;
+    color: white;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+} 
 
+
+h1{
+    align-items: center;
+    justify-self: flex-start;
+}
  .DeletAnimation{
    height: 75px;
 display: grid;
@@ -21,11 +36,14 @@ border-bottom: solid 1px grey;
     display: flex;
     align-items: center;
     
+    
 }
 .jokeWrapper{
     border-bottom: solid 1px grey;
+   
 }
-.jokeItem{
+.SwipeItem{
+    
 margin: 0;
 height: 100%;
 background-color: darkseagreen;
@@ -47,7 +65,7 @@ transition: transform 0.15s ease;
     grid-column-end:3 ;
     grid-row-start: 1;
     grid-row-end:2;
-
+   
 }
 
 .onaBox{
@@ -57,4 +75,8 @@ transition: transform 0.15s ease;
 
 .onaBox p{
     margin: 0;
+    color: honeydew;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
 }
