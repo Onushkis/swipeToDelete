@@ -49,15 +49,16 @@ document.querySelector(".jokeWrapper").addEventListener("touchstart", (e) => {
   //-------------------------------- Touch Move
 
   document.querySelector(".jokeWrapper").addEventListener("touchmove", (e) => {
-    touchCoordinateMove = Math.floor(e.touches[0].clientX);
+    if (touchElement.tagName === "ARTICLE") {
+      touchCoordinateMove = Math.floor(e.touches[0].clientX);
 
-    if (
-      touchCoordinateMove < touchCoordinateStart &&
-      touchCoordinateMove > touchCoordinateStart - deleteButtonContainer
-    ) {
-      touchElement.style.transform = `translateX(${
-        touchCoordinateMove - touchCoordinateStart
-      }px)`;
+      if (
+        touchCoordinateMove < touchCoordinateStart &&
+        touchCoordinateMove > touchCoordinateStart - deleteButtonContainer
+      ) {
+        touchElement.style.transform = `translateX(${touchCoordinateMove - touchCoordinateStart
+          }px)`;
+      }
     }
   });
 
@@ -65,10 +66,10 @@ document.querySelector(".jokeWrapper").addEventListener("touchstart", (e) => {
 
   touchElement.addEventListener("touchend", (e) => {
     touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
-document.querySelector(".jokeWrapper")
+    document.querySelector(".jokeWrapper")
     if (touchCoordinateEnd < touchCoordinateStart - deleteButtonContainer / 2) {
       touchElement.style.transform = `translateX(-${deleteButtonContainer}px)`;
-      
+
     } else {
       touchElement.style.transform = `translateX(${e.target.offsetLeft})`;
     }
@@ -76,18 +77,29 @@ document.querySelector(".jokeWrapper")
 
   //-------------------------------------DeletedItem
 
-  parentElement.querySelector(".deleteItem").addEventListener("click", () => {
-    //  trash.push(userObject);
+  parentElement.querySelector(".deleteItem").onclick = (e) => {
+
+      // trash.push(userObject);
+
     // console.log(trash);
 
-    let userid = parentElement.id; // --------- Helps to save id
-    let userName = parentElement.querySelector(".SwipeItem").textContent;
+   /*  let userid = parentElement.id; // --------- Helps to save id
+    let userName = parentElement.querySelector(".SwipeItem").textContent; */
 
     let userObject = {
       id: parentElement.id,
       name: parentElement.querySelector(".SwipeItem").textContent,
     };
-    localStorage.setItem(`${userObject.id}`, JSON.stringify(trash)); //
+
+    trash = trash.filter((item) => userObject.id != item.id);
+    if (trash.length > 0 ){
+      localStorage.setItem( ".deleteItem", JSON.stringify(trash));
+    } else {
+      localStorage.clear();
+    }
+
+
+    //
 
     //-------------------------------- Time Out
     if (touchElement != deleteButtonContainer) {
@@ -100,5 +112,6 @@ document.querySelector(".jokeWrapper")
         parentElement.remove();
       }, 900);
     }
-  });
+  };
 });
+
